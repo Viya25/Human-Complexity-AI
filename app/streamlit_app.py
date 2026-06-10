@@ -2,16 +2,20 @@ import streamlit as st
 import pandas as pd
 import joblib
 from pathlib import Path
+import os 
 
 # -------------------------
 # Load Files
 # -------------------------
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, "..", "models", "rf_model.pkl")
+scaler_path = os.path.join(BASE_DIR, "..", "models", "scaler.pkl")
+features_path = os.path.join(BASE_DIR, "..", "models", "features.pkl")
 
-model = joblib.load(BASE_DIR / "models" / "rf_model.pkl")
-scaler = joblib.load(BASE_DIR / "models" / "scaler.pkl")
-features = joblib.load(BASE_DIR / "models" / "features.pkl")
+model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
+features = joblib.load(features_path)
 
 # -------------------------
 # Page Config
